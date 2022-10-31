@@ -25,11 +25,18 @@ def show_products(category, page):
     n_page = InlineKeyboardButton(page, callback_data=f"page|{page}")
     next_page = InlineKeyboardButton("⏭", callback_data=f"next_page|{page}")
     markup.row(previous_page, n_page, next_page)
-    markup.add(InlineKeyboardButton("Назад", callback_data=f"back"))
+    markup.add(InlineKeyboardButton("Назад", callback_data=f"back_to_cat"))
     return markup
 
 def back_categories():
-    return InlineKeyboardMarkup().add(InlineKeyboardButton("Назад", callback_data=f"back"))
+    return InlineKeyboardMarkup().add(InlineKeyboardButton("Назад", callback_data=f"back_to_cat"))
 
 def order_product():
-    return InlineKeyboardMarkup().add(InlineKeyboardButton("Заказать", callback_data="order"))
+    btn_1 = InlineKeyboardButton("Заказать", callback_data="order")
+    btn_2 = InlineKeyboardButton("Назад", callback_data="back_to_products")
+    return InlineKeyboardMarkup().row(btn_1, btn_2)
+
+def order_product_sure():
+    btn_1 = InlineKeyboardButton("Да", callback_data="sure")
+    btn_2 = InlineKeyboardButton("Нет. Вернуться к продуктам", callback_data="back_to_products")
+    return InlineKeyboardMarkup().row(btn_1, btn_2)
